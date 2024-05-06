@@ -87,7 +87,7 @@ exports.signUp = async(req, res) => {
         } = req.body;
     
         //checking if value is entered
-        if(!firstName || !lastName || !email || !password || !confirmPassword || !otp){
+        if(!firstName || !lastName || !email || !password || !confirmPassword || !otp || !phoneNumber || !governmentID || !dob || !address || !pin || district || !state){
             return res.status(403).json({
                 success : false,
                 message:"All fields are required",

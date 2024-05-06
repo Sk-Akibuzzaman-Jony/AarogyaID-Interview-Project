@@ -64,7 +64,14 @@ export function sendOTP(firstName, lastName, email, password, confirmPassword, c
       autoClose: false,
     });
     try {
-      //console.log(firstName, lastName, email, password, confirmPassword);
+      if(!firstName || !lastName || !email || !password || !confirmPassword || !phoneNumber || !governmentID || !dob || !address || !pin || district || !state){
+        toast.error("All The Fields are required to be filled", {
+          toastId: "789",
+          position: "top-center",
+          hideProgressBar: true,
+          autoClose: 2000,
+        });
+    }
       //make a json of the details and store them in the session storage 
       const tempUser = {
         firstName: firstName,
@@ -97,6 +104,8 @@ export function sendOTP(firstName, lastName, email, password, confirmPassword, c
       let errorMessage = "Sending OTP failed, please try again later";
       if (error.request.status === 401) {
         errorMessage = "User is already signed up";
+      } else if(error.request.status === 403){
+        errorMessage = "All the fields are required to be filled"
       }
       toast.error(errorMessage, {
         toastId: "789",
