@@ -64,14 +64,14 @@ export function sendOTP(firstName, lastName, email, password, confirmPassword, c
       autoClose: false,
     });
     try {
-      if(!firstName || !lastName || !email || !password || !confirmPassword || !phoneNumber || !governmentID || !dob || !address || !pin || district || !state){
+      if(!firstName || !lastName || !email || !password || !confirmPassword || !phoneNumber || !governmentID || !dob || !address || !pin || !district || !state){
         toast.error("All The Fields are required to be filled", {
           toastId: "789",
           position: "top-center",
           hideProgressBar: true,
           autoClose: 2000,
         });
-    }
+      }
       //make a json of the details and store them in the session storage 
       const tempUser = {
         firstName: firstName,
@@ -133,6 +133,7 @@ export function signup(otp, dispatch, navigate) {
       //get tempUser date from session storage
       const tempUser = JSON.parse(sessionStorage.getItem("tempUser"));
       tempUser.otp = otp;
+      console.log(tempUser);
       const response = await apiConnector("POST", auth.SIGNUP_API, tempUser);
       sessionStorage.clear();
       navigate("/login")
@@ -143,13 +144,7 @@ export function signup(otp, dispatch, navigate) {
         autoClose: 2000,
       })
     } catch (error) {
-      let errorMessage = "Signup Failed, please try again later";
-        if (error.request.status === 403) {
-          errorMessage = "Please enter OTP";
-        } else if (error.request.status === 400) {
-          errorMessage = "Invalid OTP";
-        }
-        toast.error(errorMessage, {
+        toast.error(error.request.message, {
           toastId: "789",
           position: "top-center",
           hideProgressBar: true,

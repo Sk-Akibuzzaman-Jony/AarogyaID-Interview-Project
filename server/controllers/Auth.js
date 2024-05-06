@@ -87,7 +87,7 @@ exports.signUp = async(req, res) => {
         } = req.body;
     
         //checking if value is entered
-        if(!firstName || !lastName || !email || !password || !confirmPassword || !otp || !phoneNumber || !governmentID || !dob || !address || !pin || district || !state){
+        if(!firstName || !lastName || !email || !password || !confirmPassword || !otp || !phoneNumber || !governmentID || !dob || !address || !pin || !district || !state){
             return res.status(403).json({
                 success : false,
                 message:"All fields are required",
@@ -95,7 +95,7 @@ exports.signUp = async(req, res) => {
         }
 
         //if account type is doctor check if profession details are given or not 
-        if(accountType === "Doctor" && (!healthcareProfessionalType || !healthcareSubcategory)){
+        if(accountType === "Healthcare Professional" && (!healthcareProfessionalType || !healthcareSubcategory)){
             return res.status(403).json({
                 success:false,
                 message:"Proper Profession Details are required for Healthcare professionals"

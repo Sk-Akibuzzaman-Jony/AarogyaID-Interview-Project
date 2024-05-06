@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
   },
   accountType: {
     type: String,
-    enum: ["Doctor", "Admin", "Patient"],
+    enum: ["Healthcare Professional", "Admin", "Patient"],
     required: true
   },
   governmentID: {

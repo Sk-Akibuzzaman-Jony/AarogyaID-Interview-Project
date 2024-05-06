@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Signup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userTypes = ["Patient", "Doctor", "Admin"];
+  const userTypes = ["Patient", "Healthcare Professional", "Admin"];
   const [currentUserType, setCurrentUserType] = useState(userTypes[0]);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -101,13 +101,13 @@ const Signup = () => {
       <div className="flex flex-col items center w-[75%] ">
         <div className="">
           <div
-            className="mt-11 mb-11 flex flex-row rounded-full bg-richblack-5 border border-richblack-100
-      px-1 py-1 w-fit "
+            className="mt-11 mb-11 flex flex-row rounded-full w-full justify-between p-5 bg-richblack-5 border border-richblack-100
+      px-1 py-1 "
           >
             {userTypes.map((element, index) => {
               return (
                 <div
-                  className={`text-[16px] flex flex-row items-center gap-2 
+                  className={`text-sm flex flex-row items-center gap-2 w-fit
                 ${currentUserType === element
                       ? "bg-orange-300 text-richblack-900 font-medium"
                       : "text-richblack-900"
@@ -221,7 +221,7 @@ const Signup = () => {
             </div>
             <div>
               {/* Dropdown for healthcare professional type */}
-              {currentUserType === "Doctor" && (
+              {currentUserType === "Healthcare Professional" && (
                 <div className="flex flex-col">
                   <label
                     htmlFor="healthcareProfessionalType"
@@ -246,7 +246,7 @@ const Signup = () => {
             </div>
             <div>
               {/* Dropdown for healthcare subcategory */}
-              {currentUserType === "Doctor" && (
+              {currentUserType === "Healthcare Professional" && (
                 <div className="flex flex-col">
                   <label
                     htmlFor="healthcareSubcategory"
@@ -272,7 +272,7 @@ const Signup = () => {
                 </div>
               )}
             </div>
-            {currentUserType === "Doctor" && (
+            {currentUserType === "Healthcare Professional" && (
                 <div className="flex flex-col">
                   <label
                     htmlFor="healthcareProfessionalID"

@@ -7,7 +7,7 @@ import { login } from "../services/operations/authApi";
 import { toast } from 'react-toastify';
 
 const Login = () => {
-  const userTypes = window.location.pathname === "/admin-login" ? ["Admin"] : ["Patient", "Doctor"];
+  const userTypes = window.location.pathname === "/admin-login" ? ["Admin"] : ["Patient", "Healthcare Professional"];
   const [currentUserType, setCurrentUserType] = useState(userTypes[0]);
   const dispatch = useDispatch();
   const navigate = useNavigate();

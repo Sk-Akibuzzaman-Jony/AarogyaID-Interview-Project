@@ -45,7 +45,7 @@ const Dashboard = () => {
           
         </div>
       )}
-      {user && user.accountType === 'Doctor' && user.healthcareProfessionalType && (
+      {user && user.accountType === 'Healthcare Professional' && user.healthcareProfessionalType && (
         <div className="bg-richblue-25 p-10 rounded-lg mb-14">
           <div className="flex justify-between">
             <div className="text-richblack-900 font-bold text-2xl pb-5">Professional Details</div>
